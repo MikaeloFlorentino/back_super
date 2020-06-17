@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Super;
 
@@ -15,8 +17,16 @@ class SuperController extends Controller
     public function index()
     {
         //
-
-        $super = Super::all();
+/*
+        $super = Super::all()
+                ->get();
+                */
+        
+        $super = DB::table('supers')
+                ->orderBy('comprado')
+                ->orderBy('area_super')
+                ->get();
+        
         return $super;
 
     }
@@ -98,6 +108,30 @@ class SuperController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // delete
+        $super = Super::find($id);
+        Super::destroy($id);
+        /*$super=Super::find($id);
+        $super->delete();
+         $super2 = new Super;*/
+        return $super;
+    }
+
+    /* *
+     * fails
+     *
+     * //@ return \Illuminate\Http\Response
+     */
+    public function actualizaComprado(Request $request)
+    {
+        //use DB; 
+        \DB::table('supers')
+                    ->where('id', $request->id)
+                    ->update(array('comprado' => $request->comprado));
+/*        DB::table('supers')
+                    ->where('id', $request->id)
+                    ->update(array('comprado' => $request->comprado));
+  */      return $request;
+        
     }
 }

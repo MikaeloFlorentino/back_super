@@ -17,7 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('pokemons', 'PokemonController');
 
+Route::put('super/comprado', 'SuperController@actualizaComprado')->name('super.comprado');
 
 Route::resource('super', 'SuperController');
+
