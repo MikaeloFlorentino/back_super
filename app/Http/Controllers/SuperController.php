@@ -32,11 +32,6 @@ class SuperController extends Controller
     }
 
     public function listSuper($area_super, $comprado, $atiende){
-        echo $comprado."<br>";
-        echo $area_super."<br>";
-        echo $atiende."<br>";
-
-
         $super = DB::table('supers')
                 ->where(function($query) use ($area_super, $comprado, $atiende) {
                     if($area_super != 'Todo'){
@@ -53,44 +48,6 @@ class SuperController extends Controller
                 ->orderBy('area_super')
                 ->get();
         return $super;
-        /*
-        if($area_super == 'Todo'){
-            if($comprado=='true'){
-                $super = DB::table('supers')
-                ->orderBy('comprado')
-                ->orderBy('area_super')
-                ->get();
-            }else{
-
-                $super = DB::table('supers')
-                        ->where('comprado', '=',$comprado)
-                        ->orderBy('comprado')
-                        ->orderBy('area_super')
-                        ->get();
-
-            }
-        }else{
-             if($comprado=='true'){
-
-                $super = DB::table('supers')
-                        ->where('area_super', '=',$area_super)
-                        ->orderBy('comprado')
-                        ->orderBy('area_super')
-                        ->get();
-            }else{
-
-                $super = DB::table('supers')
-                        ->where('area_super', '=',$area_super)
-                        ->where('comprado', '=',$comprado)
-                        ->orderBy('comprado')
-                        ->orderBy('area_super')
-                        ->get();
-
-            }
-
-        }
-        
-        return $super;*/
     }
 
     /**
