@@ -19,6 +19,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('super/{area_super}/comprado/{comprado}/atiende/{atiende}', 'SuperController@listSuper')->name('super.listcomprado');
 
+Route::post('super/vacia', 'SuperController@listSuper')->name('super.vacia');
+
 Route::put('super/comprado', 'SuperController@actualizaComprado')->name('super.comprado');
 
 Route::resource('super', 'SuperController');

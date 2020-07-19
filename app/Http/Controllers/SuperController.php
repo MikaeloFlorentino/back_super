@@ -70,7 +70,7 @@ class SuperController extends Controller
     {
         //
        
-        //Instanciamos la clase Pokemons
+        //Instanciamos la clase 
         $super = new Super;
         //Declaramos el nombre con el nombre enviado en el request
         $super->area_super = $request->area_super;
@@ -152,5 +152,11 @@ class SuperController extends Controller
                     ->update(array('comprado' => $request->comprado));
   */      return $request;
         
+    }
+
+    /**
+    */
+    public function vacia(){
+        Super::query()->truncate();
     }
 }
